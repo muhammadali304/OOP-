@@ -1,4 +1,5 @@
 #! /usr/bin/env node
+import chalk from "chalk";
 import inquirer from "inquirer";
 class Person {
     // Constructor
@@ -27,11 +28,13 @@ class Program {
             const input = await inquirer.prompt({
                 type: 'input',
                 name: 'answer',
-                message: 'Type 1 if you like to talk to others and type 2 if you would rather keep to yourself:',
+                message: 'Type 1) If you like to talk to others or \n Type 2) If you would rather keep to yourself:',
             });
+            console.log("\n");
             const myPerson = new Person();
             myPerson.askQuestion(parseInt(input.answer));
-            console.log("You are: " + myPerson.getPersonality());
+            console.log("You are: " + chalk.blueBright(myPerson.getPersonality()));
+            console.log("\n");
             const nameInput = await inquirer.prompt({
                 type: 'input',
                 name: 'name',
@@ -39,7 +42,7 @@ class Program {
             });
             const myStudent = new Student();
             myStudent.name = nameInput.name;
-            console.log("Your name is: " + myStudent.name + " and your personality is: " + myStudent.getPersonality());
+            console.log("Your name is: " + chalk.blueBright(myStudent.name) + " and your personality is: " + chalk.blueBright(myStudent.getPersonality()));
         }
         catch {
             console.log("Please enter an integer value");
